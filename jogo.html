@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <style>
+        table.center {
+            margin-left:auto; 
+            margin-right:auto;
+        }
+    </style>
+</head>
+<body>
+    Digite os números sorteados do último jogo:
+    <input id="num1" type="number" min="0" max="99" width="5px" onblur="doSum()"/>
+    <input id="num2" type="number" min="0" max="99" onblur="doSum()"/>
+    <input id="num3" type="number" min="0" max="99" onblur="doSum()"/>
+    <input id="num4" type="number" min="0" max="99" onblur="doSum()"/>
+    <input id="num5" type="number" min="0" max="99" onblur="doSum()"/>
+    <table id="matriz" class="center" style="font-size:200%" cellpadding="50">
+        <tr >
+            <td>NaN</td>
+            <td>NaN</td>
+            <td>NaN</td>
+            <td>2</td>
+            <td>5</td>
+            <td>7</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <script>
+        function doMath() {
+            const matriz = document.getElementById("matriz");
+            var rowLength = matriz.rows.length;
+            for (i = 1; i < rowLength; i++) {
+                const pCells = matriz.rows.item(i-1).cells;
+                const cells = matriz.rows.item(i).cells;
+                const cellLength = cells.length;
+                for(var j = 0; j < cellLength; j++) {
+                    if(pCells.item(j+1)) {
+                        const value = (Number(pCells.item(j).innerHTML) + Number(pCells.item(j+1).innerHTML)) % 10;
+                        cells.item(j).innerHTML = value;
+                        if(value === 0) {
+                            cells.item(j).style.color = 'red';
+                        } else {
+                            cells.item(j).style.color = 'black';
+                        }
+                    } else {
+                        const value = (Number(pCells.item(0).innerHTML) + Number(pCells.item(6).innerHTML)) % 10;
+                        cells.item(j).innerHTML = value;
+                        if(value === 0) {
+                            cells.item(j).style.color = 'red';
+                        } else {
+                            cells.item(j).style.color = 'black';
+                        }
+                    }
+                }
+            }
+        }
+
+        function doSum() {
+            let vSum = 0;
+            vSum += Number(document.getElementById("num1").value);
+            vSum += Number(document.getElementById("num2").value);
+            vSum += Number(document.getElementById("num3").value);
+            vSum += Number(document.getElementById("num4").value);
+            vSum += Number(document.getElementById("num5").value);
+            
+            const matriz = document.getElementById("matriz");
+            const fRow = matriz.rows.item(0).cells;
+            fRow[0].innerHTML = (''+vSum)[0];
+            fRow[1].innerHTML = (''+vSum)[1];
+            fRow[2].innerHTML = (''+vSum)[2];
+            doMath();
+        }
+    </script>
+</body>
+</html>
